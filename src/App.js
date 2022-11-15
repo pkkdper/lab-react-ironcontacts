@@ -6,6 +6,12 @@ function App() {
   return (
     <div className="App">
       <h1>IronContacts</h1>
+      <button onClick={()=>{
+        const newContact=contactsJSON[Math.floor(Math.random()*contactsJSON.length)]
+        setContacts([...contacts, newContact])
+        }}>Add Random Contact</button>
+      <button>Sort by Popularity</button>
+      <button>Sort by Name</button>
       <table>
         <thead>
           <tr>
