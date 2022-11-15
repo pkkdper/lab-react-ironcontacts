@@ -1,8 +1,8 @@
 import contactsJSON from "./contacts.json";
 import "./App.css";
-import {useState} from "react";
-function App() { 
-  const [contacts, setContacts] = useState(contactsJSON.slice(0, 5))
+import { useState } from "react";
+function App() {
+  const [contacts, setContacts] = useState(contactsJSON.slice(5, 10));
   return (
     <div className="App">
       <h1>IronContacts</h1>
@@ -12,25 +12,28 @@ function App() {
             <th>Picture</th>
             <th>Name</th>
             <th>Popularity</th>
+            <th>Won Oscar</th>
+            <th>Won Emmy</th>
           </tr>
         </thead>
-        {contacts.map(({id, name, pictureUrl, popularity}) => {
-          return (
-            <tbody key={id}>
-              <tr>
-                <td>
-                  <img
-                    src={pictureUrl}
-                    alt="pictureUrl"
-                    width="50px"
-                  />
-                </td>
-                <td>{name}</td>
-                <td>{popularity.toFixed(2)}</td>
-              </tr>
-            </tbody>
-          );
-        })}
+        {contacts.map(
+          ({ id, name, pictureUrl, popularity, wonOscar, wonEmmy }) => {
+            return (
+              <tbody key={id}>
+                <tr>
+                  <td>
+                    <img src={pictureUrl} alt="pictureUrl" width="50px" />
+                  </td>
+                  <td>{name}</td>
+                  <td>{popularity.toFixed(2)}</td>
+                  {/* <td>{if (wonOscar) {yes}}</td> */}
+                  {wonOscar ? <td>🏆 </td> : <td></td>}
+                  {wonEmmy ? <td>🏆 </td> : <td></td>}
+                </tr>
+              </tbody>
+            );
+          }
+        )}
       </table>
     </div>
   );
