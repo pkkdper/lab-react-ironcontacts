@@ -3,14 +3,30 @@ import "./App.css";
 import { useState } from "react";
 function App() {
   const [contacts, setContacts] = useState(contactsJSON.slice(5, 10));
+  function sortBypopularity(contactsJSON, byPopularity) {
+    let sortedData;
+    if (byPopularity === "popularity") {
+      sortedData = contactsJSON.sort(function (a, b) {
+        return a.popularity - b.popularity;
+      });
+    }
+    return sortedData;
+  }
   return (
     <div className="App">
       <h1>IronContacts</h1>
-      <button onClick={()=>{
-        const newContact=contactsJSON[Math.floor(Math.random()*contactsJSON.length)]
-        setContacts([...contacts, newContact])
-        }}>Add Random Contact</button>
-      <button>Sort by Popularity</button>
+      <button
+        onClick={() => {
+          const newContact =
+            contactsJSON[Math.floor(Math.random() * contactsJSON.length)];
+          setContacts([...contacts, newContact]);
+        }}
+      >
+        Add Random Contact
+      </button>
+      <button onClick={() => {
+        sortBypopularity()
+      }}>Sort by Popularity</button>
       <button>Sort by Name</button>
       <table>
         <thead>
